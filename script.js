@@ -1,28 +1,39 @@
+document.addEventListener("DOMContentLoaded", chngGrd);
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
+function chngGrd(){
 
-
-
+var color1 = 'rgb(0,0,255)';
+var square = 0;
+var change = 3;
+var b1 = 0;
+var b2 = 255;
+var chkCont = document.createElement("div");
   for (var i = 0; i < 9; i++){
+
     //create a new array
     for (var j = 0; j < 9; j++){
     //create a div to put in an array space
-    var chkrBrd = document.createElement("div");
-    var r = getRandomInt(0,255);
-    var g = getRandomInt(0,255);
-    var b = getRandomInt(0,255);
-    var randColor = `rgb(${r},${g},${b})`;
-        chkrBrd.style.backgroundColor = randColor;
-
-        chkrBrd.style.width = "11.1%";
-        chkrBrd.style.float = "left";
-        chkrBrd.style.paddingBottom = "11.1%";
-      document.body.appendChild(chkrBrd);
+    var chkBrd = document.createElement("div");
+          if (square === 0){
+            square = 1;
+            var b1Color = `rgb(0,0,${b1})`;
+            color1 = b1Color;
+          }
+          else {
+            square = 0;
+            var b2Color = `rgb(255,0,${b2})`;
+            color1 = b2Color;
+          }
+          b1 = b1 + change;
+          b2 = b2 - change;
+          chkBrd.style.backgroundColor = color1;
+          console.log(color1);
+        chkBrd.style.width = "11.1%";
+        chkBrd.style.float = "left";
+        chkBrd.style.paddingBottom = "11.1%";
+      chkCont.appendChild(chkBrd);
 
     }
-
   }
+document.body.appendChild(chkCont);
+}
